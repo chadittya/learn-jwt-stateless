@@ -10,4 +10,18 @@ export class UserTest {
 
     return clean;
   }
+
+  static async create() {
+    const user = await prisma.user.create({
+      data: {
+        username: "test",
+        password: await Bun.password.hash("12345678", {
+          algorithm: "bcrypt",
+          cost: 10,
+        }),
+      },
+    });
+
+    return user;
+  }
 }
