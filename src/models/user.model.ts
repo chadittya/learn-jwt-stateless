@@ -10,9 +10,9 @@ export interface registerResponse {
   username: string;
 }
 
-export interface tokenResponse {
-  token: string;
-}
+export type loginRequest = registerRequest;
+
+export type loginResponse = registerResponse;
 
 export function toRegisterResponse(user: User): registerResponse {
   return {

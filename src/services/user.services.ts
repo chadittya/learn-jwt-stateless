@@ -1,6 +1,7 @@
-import { User } from "@prisma/client";
 import { prisma } from "../../prisma/client";
 import {
+  loginRequest,
+  loginResponse,
   registerRequest,
   registerResponse,
   toRegisterResponse,
@@ -45,7 +46,7 @@ export class UserServices {
     return toRegisterResponse(user);
   }
 
-  static async login(request: registerRequest, set: any) {
+  static async login(request: loginRequest, set: any): Promise<loginResponse> {
     const userExist = await this.getUsername(request.username);
 
     if (!userExist) {

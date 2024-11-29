@@ -2,7 +2,7 @@ import Elysia from "elysia";
 import { UserServices } from "../services/user.services";
 import { UserSchema } from "../schema/user.schema";
 import jwt from "@elysiajs/jwt";
-import { registerRequest } from "../models/user.model";
+import { loginRequest } from "../models/user.model";
 
 export const User = new Elysia()
   .use(
@@ -17,7 +17,7 @@ export const User = new Elysia()
     UserSchema.register
   )
   .post("/login", async ({ body, jwt, set }) => {
-    const user = await UserServices.login(body as registerRequest, set);
+    const user = await UserServices.login(body as loginRequest, set);
 
     const token = await jwt.sign({
       id: user.id,
